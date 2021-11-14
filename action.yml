@@ -6,7 +6,7 @@ inputs:
   get-git-user: # 'meh'
     description: 'Get github username'
     required: true
-    default: `${github.actor}`
+    default: "${{ github.actor }}"
 outputs:
   result: # 'meh'
     description: 'time greeted or something'

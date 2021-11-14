@@ -1,0 +1,17 @@
+name: 'Octo my README Workflow'
+author: 'arndom'
+description: 'Add an octocat based on your most frequent language to your special README'
+
+inputs:
+  get-git-user: # 'meh'
+    description: 'Get github username'
+    required: true
+    default: `${{github.actor}}'
+outputs:
+  result: # 'meh'
+    description: 'time greeted or something'
+
+runs:
+  using: 'node12'
+  main: 'index.js'
+

@@ -9,7 +9,7 @@ jobs:
       id: hello
       uses: arndom/octo-my-readme-workflow@v0.12
       with:
-        get-git-user: "${{ github.actor }}"
+        get-git-user: "${{ github.actor}}"
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.result }}"

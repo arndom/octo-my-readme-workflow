@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.1
+      uses: arndom/octo-my-readme-workflow@v0.12
       with:
         get-git-user: "${{ github.actor }}"
     # Use the output from the `hello` step

@@ -1,0 +1,10 @@
+on: [push]
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    name: job test
+    steps:
+      - name: initial step
+        id: hello
+        uses: arndom/octo-my-readme-workflow 

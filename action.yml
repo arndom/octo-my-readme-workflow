@@ -3,10 +3,10 @@ author: 'arndom'
 description: 'Add an octocat based on your most frequent language to your special README'
 
 inputs:
-  get-git-user: # 'meh'
+  git_user: # 'meh'
     description: 'Get github username'
-    required: false
     default: "some user"
+    required: false
 outputs:
   result: # 'meh'
     description: 'time greeted or something'

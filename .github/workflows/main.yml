@@ -11,8 +11,8 @@ jobs:
     - name: get user name 
       id: hello
       uses: arndom/octo-my-readme-workflow@v0.12
-      with:
-        get-git-user: "${{ github.actor}}"
+      # with:
+      #   get-git-user: "${{ github.actor}}"
     # Use the output from the `hello` step
     - name: Get the output 
       run: echo "The result was ${{ steps.hello.outputs.result }}"

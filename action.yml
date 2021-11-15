@@ -5,8 +5,8 @@ description: 'Add an octocat based on your most frequent language to your specia
 inputs:
   get-git-user: # 'meh'
     description: 'Get github username'
-    required: true
-    default: "mem"
+    required: false
+    default: "some user"
 outputs:
   result: # 'meh'
     description: 'time greeted or something'

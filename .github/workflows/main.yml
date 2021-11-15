@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: get user name 
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.12
+      uses: arndom/octo-my-readme-workflow@v0.13
       # with:
       #   get-git-user: "${{ github.actor}}"
     # Use the output from the `hello` step

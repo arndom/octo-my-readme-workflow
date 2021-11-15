@@ -1,19 +1,13 @@
-name: "Octo my README Workflow"
-author: "arndom"
-description: "Add an octocat based on your most frequent language to your special README"
-
+name: 'Hello World'
+description: 'Greet someone and record the time'
 inputs:
-  git_user: # "meh"
-    description: "Get github username"
-    default: "stuff"
-    required: false
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
 outputs:
-  result: # "meh"
-    description: "time greeted or something"
-
+  time: # id of output
+    description: 'The time we greeted you'
 runs:
-  using: node12
-  main: index.js
-branding:
-  icon: 'activity'
-  color: 'blue'
+  using: 'node12'
+  main: 'index.js'

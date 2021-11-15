@@ -4,12 +4,15 @@ on:
   workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
 
 jobs:
-  some_job:
+  hello_world_job:
     runs-on: ubuntu-latest
-    name: test job
+    name: A job to say hello
     steps:
-      - uses: actions/checkout@v2
-      - uses: arndom/octo-my-readme-workflow@v0.17
-      # with:
-      #   get-git-user: "${{ github.actor}}"
+    - name: Hello world action step
+      id: hello
+      uses: arndom/octo-my-readme-workflow@v0.18
+      with:
+        who-to-greet: '${{github.actor}}'
     # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello.outputs.time }}"

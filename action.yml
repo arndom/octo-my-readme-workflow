@@ -1,17 +1,19 @@
-name: 'Octo my README Workflow'
-author: 'arndom'
-description: 'Add an octocat based on your most frequent language to your special README'
+name: "Octo my README Workflow"
+author: "arndom"
+description: "Add an octocat based on your most frequent language to your special README"
 
 inputs:
-  git_user: # 'meh'
-    description: 'Get github username'
-    default: 'some_user'
+  git_user: # "meh"
+    description: "Get github username"
+    default: "stuff"
     required: false
 outputs:
-  result: # 'meh'
-    description: 'time greeted or something'
+  result: # "meh"
+    description: "time greeted or something"
 
 runs:
-  using: 'node12'
-  main: 'index.js'
-
+  using: node12
+  main: index.js
+branding:
+  icon: 'activity'
+  color: 'blue'

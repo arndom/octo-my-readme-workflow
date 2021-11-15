@@ -9,7 +9,7 @@ jobs:
     name: test job
     steps:
       - uses: actions/checkout@v2
-      - uses: arndom/octo-my-readme-workflow@v0.13
+      - uses: arndom/octo-my-readme-workflow@v0.14
       # with:
       #   get-git-user: "${{ github.actor}}"
     # Use the output from the `hello` step

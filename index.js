@@ -5,7 +5,7 @@ try{
     const name = core.getInput(git_user);
     console.log(`Hello ${name}`);
     
-    core.setOutput("result", name);
+    // core.setOutput("result", name);
     
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`)

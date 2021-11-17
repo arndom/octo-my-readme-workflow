@@ -12,9 +12,9 @@ jobs:
     steps:
     - name: Get git username & most used language
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.24
+      uses: arndom/octo-my-readme-workflow@v0.25
       with:
-        who-to-greet: '${{github.actor}}'
+        user: '${{github.actor}}'
 
     # Use the output from the `hello` step
     # - name: Get the output time

@@ -6,12 +6,15 @@ inputs:
   user:  # id of input
     description: 'greet the user'
     required: true
-    default: 'World'
+    default: ${{ github.actor }}
   readme_path:
     description: 'Comma separated paths of the readme files you want to update'
     default: './README.md'
     required: false
-
+  language_frequent:
+    description: 'Most used language by user'
+    default: 'txt'
+    required: false
 # outputs:
 #   time: # id of output
 #     description: 'The time we greeted you'

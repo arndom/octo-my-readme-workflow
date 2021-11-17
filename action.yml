@@ -3,11 +3,15 @@ author: 'arndom'
 description: 'add custom octocat based on most used language to readme'
 
 inputs:
-  who-to-greet:  # id of input
+  user:  # id of input
     description: 'greet the user'
     required: true
     default: 'World'
-  most-used-language:  # id of input
+  readme_path:
+    description: 'Comma separated paths of the readme files you want to update'
+    default: './README.md'
+    required: false
+  most_used_language:  # id of input
     description: 'user's most frequented language'
     required: false
     default: 'Text'
@@ -19,3 +23,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'index.js'
+branding:
+  icon: 'activity'
+  color: 'blue'

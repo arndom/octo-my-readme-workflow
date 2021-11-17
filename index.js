@@ -4,11 +4,11 @@ const github = require('@actions/github')
 try {
     // `who-to-greet` input defined in action metadata file
     
-    const userName = core.getInput('who-to-greet');
+    const userName = core.getInput('user');
     const time = (new Date()).toTimeString();
     console.log(`Hello ${userName}! This was run at ${time}`);
 
-    const mostUsedLanguage = core.getInput('most-used-language');
+    const mostUsedLanguage = core.getInput('most_used_language');
     console.log(`your most used language is ${mostUsedLanguage}!`);
 
   } catch (error) {

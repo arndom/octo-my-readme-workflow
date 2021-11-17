@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Get User Data
     steps:
-    - name: Get git Uusername & most used language
+    - name: Get git username & most used language
       id: hello
       uses: arndom/octo-my-readme-workflow@v0.2
       with:

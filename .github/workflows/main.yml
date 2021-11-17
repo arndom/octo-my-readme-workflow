@@ -6,13 +6,13 @@ on:
   workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
 
 jobs:
-  hello_world_job:
+  get_user_data:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Get User Data
     steps:
     - name: Get Git Username
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.18
+      uses: arndom/octo-my-readme-workflow
       with:
         who-to-greet: '${{github.actor}}'
     # Use the output from the `hello` step

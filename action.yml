@@ -4,7 +4,7 @@ description: 'add custom octocat based on most used language to readme'
 
 inputs:
   who-to-greet:  # id of input
-    description: 'Who to greet'
+    description: 'greet the user'
     required: true
     default: 'World'
 

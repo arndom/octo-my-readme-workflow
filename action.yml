@@ -7,7 +7,6 @@ inputs:
     description: 'greet the user'
     required: true
     default: 'World'
-
   most-used-language:  # id of input
     description: 'user's most frequented language'
     required: true

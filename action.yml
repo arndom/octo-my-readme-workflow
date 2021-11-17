@@ -11,10 +11,6 @@ inputs:
     description: 'Comma separated paths of the readme files you want to update'
     default: './README.md'
     required: false
-  most_used_lang:  # id of input
-    description: 'user's most frequented language'
-    default: './README.md'
-    required: false
 
 # outputs:
 #   time: # id of output

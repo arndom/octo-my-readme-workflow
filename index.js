@@ -8,9 +8,6 @@ try {
     const time = (new Date()).toTimeString();
     console.log(`Hello ${userName}! This was run at ${time}`);
 
-    // const mostUsedLanguage = core.getInput('most_used_lang');
-    // console.log(`your most used language is ${mostUsedLanguage}!`);
-
   } catch (error) {
     core.setFailed(error.message);
   }

@@ -12,10 +12,10 @@ jobs:
     steps:
     - name: Get Git Username
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.18
+      uses: arndom/octo-my-readme-workflow@v0.19
       with:
         who-to-greet: '${{github.actor}}'
-          
+
     # Use the output from the `hello` step
     # - name: Get the output time
     #   run: echo "The time was ${{ steps.hello.outputs.time }}"

@@ -8,6 +8,11 @@ inputs:
     required: true
     default: 'World'
 
+  most-used-language:  # id of input
+    description: 'user's most frequented language'
+    required: true
+    default: 'Text'
+
 # outputs:
 #   time: # id of output
 #     description: 'The time we greeted you'

@@ -1,5 +1,7 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Octo my readme'
+author: 'arndom'
+description: 'add custom octocat based on most used language to readme'
+
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'

@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Get git Uusername & most used language
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.19
+      uses: arndom/octo-my-readme-workflow@v0.2
       with:
         who-to-greet: '${{github.actor}}'
 

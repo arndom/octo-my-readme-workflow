@@ -14,7 +14,13 @@ try {
 
     const markdown = `${userName}'s' most used language is ${language}`
 
-    console.log(child_process.exec('ls'))
+    child_process.exec('ls', (err, stdout, stderr) => {  
+      if (err) {  
+        console.error(err);  
+        return;  
+      }  
+      console.log(stdout);  
+    });  
 
     // Readme path, default: ./README.md
     const README_FILE_PATH = core.getInput('readme_path')

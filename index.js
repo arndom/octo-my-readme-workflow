@@ -5,7 +5,7 @@ const github = require('@actions/github')
 const { Octokit } = require('@octokit/core')
 const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
-(async = () => {
+(async () => {
 
   try {
     // `who-to-greet` input defined in action metadata file

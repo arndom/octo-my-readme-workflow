@@ -21,7 +21,6 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
     const username = process.env.GITHUB_REPOSITORY.split("/")[0]
     const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
-
     console.log(username,  " <- user !!! repo->",repo)
 
     const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
@@ -36,28 +35,24 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       console.error("Failed: ", e)
       core.setFailed("Failed: ", e.message)
     })
-
     console.log(getReadme)
 
+    const sha = getReadme.sha
+    console.log(sha)
 
-    // const sha = getReadme[0].sha
-
-    // console.log(sha)
-
-
-    // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-    //   owner: username,
-    //   repo: repo,
-    //   path: core.getInput('readme_path'),
-    //   message: '(Automated) Update README.md',
-    //   content: Buffer.from(markdown, "utf8").toString('base64'),
-    //   sha: sha,
-    // }).then(() => {
-    //   core.setOutput("result", (markdown))
-    // }).catch((e) => {
-    //   console.error("Failed: ", e)
-    //   core.setFailed("Failed: ", e.message)
-    // })
+    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      owner: username,
+      repo: repo,
+      path: core.getInput('readme_path'),
+      message: '(Automated) Update README.md',
+      content: Buffer.from(markdown, "utf8").toString('base64'),
+      sha: sha,
+    }).then(() => {
+      core.setOutput("result", (markdown))
+    }).catch((e) => {
+      console.error("Failed: ", e)
+      core.setFailed("Failed: ", e.message)
+    })
 
 
 

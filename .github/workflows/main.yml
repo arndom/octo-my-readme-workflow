@@ -12,8 +12,10 @@ jobs:
     steps:
     - name: Get git username & most used language
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.27
+      uses: arndom/octo-my-readme-workflow@v0.2
       with:
         user: '${{github.actor}}'
-    - name: show dir struct
-      run: echo "The time was ${{ ls }}"
+
+    # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ ls}}"

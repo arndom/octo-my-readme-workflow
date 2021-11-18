@@ -30,28 +30,34 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       path: core.getInput('path'),
     }).then( res => {
       console.log(res.data)
+      return res.data
     }     
     ).catch(e => {
       console.error("Failed: ", e)
       core.setFailed("Failed: ", e.message)
     })
-    // const sha = getReadme.data.sha
 
     console.log(getReadme)
 
-    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-      owner: username,
-      repo: repo,
-      path: core.getInput('path'),
-      message: '(Automated) Update README.md',
-      content: Buffer.from(markdown, "utf8").toString('base64'),
-      sha: sha,
-    }).then(() => {
-      core.setOutput("result", (markdown))
-    }).catch((e) => {
-      console.error("Failed: ", e)
-      core.setFailed("Failed: ", e.message)
-    })
+
+    const sha = getReadme.sha
+
+    console.log(sha)
+
+
+    // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    //   owner: username,
+    //   repo: repo,
+    //   path: core.getInput('path'),
+    //   message: '(Automated) Update README.md',
+    //   content: Buffer.from(markdown, "utf8").toString('base64'),
+    //   sha: sha,
+    // }).then(() => {
+    //   core.setOutput("result", (markdown))
+    // }).catch((e) => {
+    //   console.error("Failed: ", e)
+    //   core.setFailed("Failed: ", e.message)
+    // })
 
 
 

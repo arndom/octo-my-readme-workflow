@@ -28,7 +28,10 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       owner: username,
       repo: repo,
       path: core.getInput('path'),
-    }).catch(e => {
+    }).then( res => {
+      console.log(res.data)
+    }     
+    ).catch(e => {
       console.error("Failed: ", e)
       core.setFailed("Failed: ", e.message)
     })

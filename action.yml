@@ -9,7 +9,7 @@ inputs:
     default: ${{ github.actor }}
   readme_path:
     description: 'Comma separated paths of the readme files you want to update'
-    default: './README.md'
+    default: '../README.md'
     required: false
   language_frequent:
     description: 'Most used language by user'

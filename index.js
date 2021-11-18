@@ -3,8 +3,7 @@ const github = require('@actions/github')
 // const fs = require('fs');
 // const child_process =  require('child_process')
 const { Octokit } = require('@octokit/core')
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
+const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
 {
 
@@ -18,8 +17,13 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
     const markdown = `${userName}'s' most used language is ${language}`
 
+    console.log(octokit)
+
     const username = process.env.GITHUB_REPOSITORY.split("/")[0]
     const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
+
+    console.log(username, repo)
+
     const getReadme = async () => await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,

@@ -24,7 +24,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
     console.log(username,  " <- user !!! repo->",repo)
 
-    const getReadme = async () => await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,
       path: core.getInput('path'),
@@ -39,7 +39,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
     console.log(getReadme)
 
-    async () => await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,
       path: core.getInput('path'),

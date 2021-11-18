@@ -15,7 +15,5 @@ jobs:
       uses: arndom/octo-my-readme-workflow@v0.27
       with:
         user: '${{github.actor}}'
-
-    Use the output from the `hello` step
     - name: show dir struct
       run: echo "The time was ${{ ls }}"

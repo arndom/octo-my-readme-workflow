@@ -29,7 +29,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       repo: repo,
       path: core.getInput('path'),
     }).then( res => {
-      console.log(res.data)
+      // console.log(res.data)
       return res.data
     }     
     ).catch(e => {
@@ -37,12 +37,12 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       core.setFailed("Failed: ", e.message)
     })
 
-    console.log(getReadme)
+    console.log(getReadme[0])
 
 
-    const sha = getReadme.sha
+    // const sha = getReadme.sha
 
-    console.log(sha)
+    // console.log(sha)
 
 
     // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {

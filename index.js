@@ -22,7 +22,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     const username = process.env.GITHUB_REPOSITORY.split("/")[0]
     const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
 
-    console.log(username, repo)
+    console.log(username,  " <- user !!! repo->",repo)
 
     const getReadme = async () => await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
@@ -32,9 +32,9 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       console.error("Failed: ", e)
       core.setFailed("Failed: ", e.message)
     })
-    const sha = getReadme.data.sha
+    // const sha = getReadme.data.sha
 
-    console.log(getReadme.data)
+    console.log(getReadme)
 
     async () => await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
       owner: username,

@@ -1,6 +1,7 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 const fs = require('fs');
+const child_process =  require('child_process')
 
 try {
     // `who-to-greet` input defined in action metadata file
@@ -8,9 +9,12 @@ try {
     const userName = core.getInput('user');
     const language = core.getInput('language_frequent')
 
+
     console.log(`Hello ${userName}! your most used language in your repos is ${language}`);
 
     const markdown = `${userName}'s' most used language is ${language}`
+
+    child_process.exec('ls')
 
     // Readme path, default: ./README.md
     const README_FILE_PATH = core.getInput('readme_path')

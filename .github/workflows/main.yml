@@ -12,6 +12,6 @@ jobs:
     steps:
     - name: Get git username & most used language
       id: hello
-      uses: arndom/octo-my-readme-workflow@v0.2
+      uses: arndom/octo-my-readme-workflow@v0.27
       with:
         user: '${{github.actor}}'

@@ -1,12 +1,13 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
-const fs = require('fs');
-const child_process =  require('child_process')
+// const fs = require('fs');
+// const child_process =  require('child_process')
 const { Octokit } = require('@octokit/core')
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 
-(async () => {
+{
+
   try {
     // `who-to-greet` input defined in action metadata file
     
@@ -19,7 +20,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
     const username = process.env.GITHUB_REPOSITORY.split("/")[0]
     const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
-    const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    const getReadme = async () => await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,
       path: core.getInput('path'),
@@ -31,7 +32,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
     console.log(getReadme.data)
 
-    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    async () => await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,
       path: core.getInput('path'),
@@ -64,4 +65,3 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
     core.setFailed(error.message);
   }
 }
-)

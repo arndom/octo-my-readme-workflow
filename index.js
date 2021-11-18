@@ -27,7 +27,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,
-      path: core.getInput('path'),
+      path: core.getInput('readme_path'),
     }).then( res => {
       // console.log(res.data)
       return res.data
@@ -37,10 +37,10 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       core.setFailed("Failed: ", e.message)
     })
 
-    console.log(getReadme[0])
+    console.log(getReadme)
 
 
-    // const sha = getReadme.sha
+    // const sha = getReadme[0].sha
 
     // console.log(sha)
 
@@ -48,7 +48,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     //   owner: username,
     //   repo: repo,
-    //   path: core.getInput('path'),
+    //   path: core.getInput('readme_path'),
     //   message: '(Automated) Update README.md',
     //   content: Buffer.from(markdown, "utf8").toString('base64'),
     //   sha: sha,

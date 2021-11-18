@@ -18,14 +18,14 @@ inputs:
   tag_post_pre_newline:
     description: "Inserts newline before the closing tag and after the opening tag when using the template option, for formatting"
     required: false
-# outputs:
-#   time: # id of output
-#     description: 'The time we greeted you'
+outputs:
+  result: # id of output
+    description: 'our result'
 
 runs:
   using: 'node12'
   main: 'index.js'
-  
+
 branding:
   icon: 'activity'
   color: 'blue'

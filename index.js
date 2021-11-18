@@ -36,10 +36,10 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
       repo: repo,
       path: core.getInput('path'),
       message: '(Automated) Update README.md',
-      content: Buffer.from(data, "utf8").toString('base64'),
+      content: Buffer.from(markdown, "utf8").toString('base64'),
       sha: sha,
     }).then(() => {
-      core.setOutput("repositories", Array.from(recentRepos))
+      core.setOutput("result", (markdown))
     }).catch((e) => {
       console.error("Failed: ", e)
       core.setFailed("Failed: ", e.message)

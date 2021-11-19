@@ -52,6 +52,7 @@ const axios = require('axios');
  * @param {import('axios').AxiosRequestConfig['headers']} headers
  */
   function request(data, headers) {
+    //@ts-ignore
     return axios({
       url: "https://api.github.com/graphql",
       method: "post",

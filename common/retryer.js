@@ -6,14 +6,16 @@ const retryer = async (fetcher, variables, retries = 0) => {
   }
   try {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
-    let response = await fetcher(
+    const response = await fetcher(
       variables,
       // process.env[`PAT_${retries + 1}`],
       core.getInput('pat_1'),
       retries,
-    ).then( res =>{ 
-      console.log("resp from response in retryer ", res)
-      return res 
+    ).then( resp => {
+
+      console.log("resp from response in retryer ", resp)
+      return resp 
+    
     })
 
     // console.log(response)

@@ -30,7 +30,7 @@ const fetcher = (variables, token) => {
       variables,
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `bearer ${core.getInput('gh_token')}`,
     },
   );
 };

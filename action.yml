@@ -4,24 +4,16 @@ description: 'add custom octocat based on most used language to readme'
 
 inputs:
   user: 
-    description: 'greet the user'
+    description: 'username'
     required: true
     default: ${{ github.actor }}
   gh_token:
     description: 'user token'
     required: true
     default: ${{ github.token }}
-  pat_1: 
-    description: 'personal access token'
-    required: true
-    default: ""
   readme_path:
     description: 'Comma separated paths of the readme files you want to update'
     default: 'README.md'
-    required: false
-  language_frequent:
-    description: 'Most used language by user'
-    default: 'txt'
     required: false
   tag_post_pre_newline:
     description: "Inserts newline before the closing tag and after the opening tag when using the template option, for formatting"

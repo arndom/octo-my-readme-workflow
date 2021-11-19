@@ -51,7 +51,7 @@ const axios = require('axios');
  * @param {import('axios').AxiosRequestConfig['data']} data
  * @param {import('axios').AxiosRequestConfig['headers']} headers
  */
-  function request(data, headers) {
+  const request = (data, headers) => {
     //@ts-ignore
     return axios({
       url: "https://api.github.com/graphql",
@@ -61,30 +61,7 @@ const axios = require('axios');
     });
   }
 
-  const SECONDARY_ERROR_MESSAGES = {
-    MAX_RETRY:
-      "Please add an env variable called PAT_1 with your github token in vercel",
-    USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  };
-
-  class CustomError extends Error {
-    /**
-     * @param {string} message
-     * @param {string} type
-     */
-    constructor(message, type) {
-      super(message);
-      this.type = type;
-      this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
-    }
-  
-    static MAX_RETRY = "MAX_RETRY";
-    static USER_NOT_FOUND = "USER_NOT_FOUND";
-  }
-
-
   module.exports = {
       buildReadme,
-      request,
-      CustomError
+      request
   }

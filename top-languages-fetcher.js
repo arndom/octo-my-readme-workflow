@@ -8,7 +8,7 @@ const fetcher = (/* variables, token */) => {
   return request(
     {
       query: `
-      query user(login: ${core.getInput('user')} ){
+      query user(login: "${core.getInput('user')}" ){
           # fetch only owner repos & not forks
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {

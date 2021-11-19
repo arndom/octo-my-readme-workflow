@@ -9,7 +9,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     let response = await fetcher(
       variables,
       // process.env[`PAT_${retries + 1}`],
-      core.getInput('gh_token'),
+      core.getInput('pat_1'),
       retries,
     ).then( res =>{ 
       console.log("resp from response in retryer ", res)

@@ -3,14 +3,18 @@ author: 'arndom'
 description: 'add custom octocat based on most used language to readme'
 
 inputs:
-  user:  # id of input
+  user: 
     description: 'greet the user'
     required: true
     default: ${{ github.actor }}
-  gh_token:  # id of input
+  gh_token:
     description: 'user token'
     required: true
     default: ${{ github.token }}
+  pat_1: 
+    description: 'personal access token'
+    required: true
+    default: ${{ secrets.PAT_1 }}
   readme_path:
     description: 'Comma separated paths of the readme files you want to update'
     default: 'README.md'

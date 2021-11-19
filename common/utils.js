@@ -1,4 +1,4 @@
-const {spawn} = require('child_process');
+// const {spawn} = require('child_process');
 const core = require('@actions/core');
 const axios = require('axios');
 

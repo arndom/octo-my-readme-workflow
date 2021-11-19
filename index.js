@@ -1,10 +1,8 @@
 const core = require('@actions/core')
-// const github = require('@actions/github')
-// const fs = require('fs');
-// const child_process =  require('child_process')
 const { Octokit } = require('@octokit/core')
-const octokit = new Octokit({ auth: core.getInput('gh_token') });
 const fetchTopLanguages = require('./top-languages-fetcher')
+
+const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
 (async () => {
 

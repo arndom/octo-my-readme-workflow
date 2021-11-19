@@ -16,7 +16,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
       return res 
     })
 
-    console.log(response)
+    // console.log(response)
 
     // // prettier-ignore
     // const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";

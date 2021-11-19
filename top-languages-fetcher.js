@@ -43,7 +43,7 @@ async function fetchTopLanguages(username) {
     return resp
   });
 
-  console.log(res)
+  // console.log(res)
 
   // if (res.data.errors) {
   //   console.error(res.data.errors);

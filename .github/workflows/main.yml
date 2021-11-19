@@ -8,9 +8,9 @@ on:
 jobs:
   get_user_data:
     runs-on: ubuntu-latest
-    name: Get User Data
+    name: Get Language Stat
     steps:
-    - name: Get git username & most used language
+    - name: Get most used language from all repos
       id: hello
       uses: arndom/octo-my-readme-workflow@v0.27
       with:

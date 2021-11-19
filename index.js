@@ -13,10 +13,10 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
     const markdown = `${username}'s' most used language is text`
 
-    console.log("Hello ", username,  ", this is the ", repo, " repo")
+    console.log("Hello", username,  ", the workflow is being deployed in the", repo, "repo")
 
     const topLangs = await fetchTopLanguages();
-    console.log(" the top language is ", Object.keys(topLangs)[0])
+    console.log("Your top language is", Object.keys(topLangs)[0])
 
     // const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
     //   owner: username,

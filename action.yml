@@ -19,8 +19,8 @@ inputs:
     description: "Inserts newline before the closing tag and after the opening tag when using the template option, for formatting"
     required: false
 outputs:
-  result: # id of output
-    description: 'our result'
+  result:
+    description: 'the result of all this'
 
 runs:
   using: 'node12'

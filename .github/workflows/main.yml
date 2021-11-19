@@ -15,3 +15,4 @@ jobs:
       uses: arndom/octo-my-readme-workflow@v0.27
       with:
         user: '${{github.actor}}'
+        pat_1: '${{ secrets.PAT_1 }}'

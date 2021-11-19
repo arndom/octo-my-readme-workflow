@@ -14,7 +14,7 @@ inputs:
   pat_1: 
     description: 'personal access token'
     required: true
-    default: ${{ secrets.PAT_1 }}
+    default: ""
   readme_path:
     description: 'Comma separated paths of the readme files you want to update'
     default: 'README.md'

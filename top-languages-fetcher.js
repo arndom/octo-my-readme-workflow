@@ -44,7 +44,7 @@ async function fetchTopLanguages(username) {
   // });
 
   await fetcher().then(res=>{
-    console.log("response from fetch lang ", res)
+    console.log("response from fetch lang ", res.data)
   })
 
   // console.log(res)

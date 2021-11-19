@@ -31,7 +31,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // }
 
     // // finally return the response
-    // return response;
+    return response;
   } catch (err) {
     // prettier-ignore
     // also checking for bad credentials if any tokens gets invalidated

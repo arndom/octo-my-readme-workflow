@@ -3,7 +3,7 @@ const retryer = require("./common/retryer");
 
 // require("dotenv").config();
 
-const fetcher = (variables, token) => {
+const fetcher = (/* variables, token */) => {
   return request(
     {
       query: `
@@ -25,8 +25,8 @@ const fetcher = (variables, token) => {
           }
         
       }
-      `,
-      variables,
+      `
+      // ,variables,
     },
     {
       Authorization: `bearer ${core.getInput('gh_token')}`,
@@ -37,10 +37,14 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username) {
   if (!username) throw Error("Invalid username");
 
-  const res = await retryer(fetcher).then(resp => {
-    console.log("resp from res in fetch lang ", resp)
-    return resp
-  });
+  // const res = await retryer(fetcher).then(resp => {
+  //   console.log("resp from res in fetch lang ", resp)
+  //   return resp
+  // });
+
+  await fetcher().then(res=>{
+    console.log("response from fetch lang ", res)
+  })
 
   // console.log(res)
 

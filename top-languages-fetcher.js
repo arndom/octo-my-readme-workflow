@@ -40,7 +40,7 @@ async function fetchTopLanguages(username) {
 
   const res = await retryer(fetcher, { login: username }).then(resp => {
     console.log("resp from res in fetch lang ", resp)
-    return res
+    return resp
   });
 
   console.log(res)

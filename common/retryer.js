@@ -11,7 +11,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
       // process.env[`PAT_${retries + 1}`],
       core.getInput('gh_token'),
       retries,
-    );
+    ).then( res =>{ return res })
 
     // prettier-ignore
     const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";

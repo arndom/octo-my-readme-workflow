@@ -16,31 +16,33 @@ const retryer = async (fetcher, variables, retries = 0) => {
       return res 
     })
 
-    // prettier-ignore
-    const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
+    console.log(response)
 
-    // if rate limit is hit increase the RETRIES and recursively call the retryer
-    // with username, and current RETRIES
-    if (isRateExceeded) {
-      console.log.log(`PAT_${retries + 1} Failed`);
-      retries++;
-      // directly return from the function
-      return retryer(fetcher, variables, retries);
-    }
+    // // prettier-ignore
+    // const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
 
-    // finally return the response
-    return response;
+    // // if rate limit is hit increase the RETRIES and recursively call the retryer
+    // // with username, and current RETRIES
+    // if (isRateExceeded) {
+    //   console.log.log(`PAT_${retries + 1} Failed`);
+    //   retries++;
+    //   // directly return from the function
+    //   return retryer(fetcher, variables, retries);
+    // }
+
+    // // finally return the response
+    // return response;
   } catch (err) {
     // prettier-ignore
     // also checking for bad credentials if any tokens gets invalidated
-    const isBadCredential = err.response.data && err.response.data.message === "Bad credentials";
+    // const isBadCredential = err.response.data && err.response.data.message === "Bad credentials";
 
-    if (isBadCredential) {
-      console.log(`PAT_${retries + 1} Failed`);
-      retries++;
-      // directly return from the function
-      return retryer(fetcher, variables, retries);
-    }
+    // if (isBadCredential) {
+    //   console.log(`PAT_${retries + 1} Failed`);
+    //   retries++;
+    //   // directly return from the function
+    //   return retryer(fetcher, variables, retries);
+    // }
   }
 };
 

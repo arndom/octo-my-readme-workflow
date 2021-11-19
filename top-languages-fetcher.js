@@ -43,55 +43,57 @@ async function fetchTopLanguages(username) {
     return res
   });
 
-  if (res.data.errors) {
-    console.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
-  }
+  console.log(res)
 
-  let repoNodes = res.data.data.user.repositories.nodes;
-  let repoToHide = {};
+  // if (res.data.errors) {
+  //   console.error(res.data.errors);
+  //   throw Error(res.data.errors[0].message || "Could not fetch user");
+  // }
 
-  // filter out repositories to be hidden
-  repoNodes = repoNodes
-    .sort((a, b) => b.size - a.size)
-    .filter((name) => {
-      return !repoToHide[name.name];
-    });
+  // let repoNodes = res.data.data.user.repositories.nodes;
+  // let repoToHide = {};
 
-  repoNodes = repoNodes
-    .filter((node) => {
-      return node.languages.edges.length > 0;
-    })
-    // flatten the list of language nodes
-    .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
-    .reduce((acc, prev) => {
-      // get the size of the language (bytes)
-      let langSize = prev.size;
+  // // filter out repositories to be hidden
+  // repoNodes = repoNodes
+  //   .sort((a, b) => b.size - a.size)
+  //   .filter((name) => {
+  //     return !repoToHide[name.name];
+  //   });
 
-      // if we already have the language in the accumulator
-      // & the current language name is same as previous name
-      // add the size to the language size.
-      if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
-        langSize = prev.size + acc[prev.node.name].size;
-      }
-      return {
-        ...acc,
-        [prev.node.name]: {
-          name: prev.node.name,
-          color: prev.node.color,
-          size: langSize,
-        },
-      };
-    }, {});
+  // repoNodes = repoNodes
+  //   .filter((node) => {
+  //     return node.languages.edges.length > 0;
+  //   })
+  //   // flatten the list of language nodes
+  //   .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
+  //   .reduce((acc, prev) => {
+  //     // get the size of the language (bytes)
+  //     let langSize = prev.size;
 
-  const topLangs = Object.keys(repoNodes)
-    .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
-    .reduce((result, key) => {
-      result[key] = repoNodes[key];
-      return result;
-    }, {});
+  //     // if we already have the language in the accumulator
+  //     // & the current language name is same as previous name
+  //     // add the size to the language size.
+  //     if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
+  //       langSize = prev.size + acc[prev.node.name].size;
+  //     }
+  //     return {
+  //       ...acc,
+  //       [prev.node.name]: {
+  //         name: prev.node.name,
+  //         color: prev.node.color,
+  //         size: langSize,
+  //       },
+  //     };
+  //   }, {});
 
-  return topLangs;
+  // const topLangs = Object.keys(repoNodes)
+  //   .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
+  //   .reduce((result, key) => {
+  //     result[key] = repoNodes[key];
+  //     return result;
+  //   }, {});
+
+  // return topLangs;
 }
 
 module.exports = fetchTopLanguages;

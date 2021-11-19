@@ -8,7 +8,8 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
       variables,
-      process.env[`PAT_${retries + 1}`],
+      // process.env[`PAT_${retries + 1}`],
+      core.getInput('gh_token'),
       retries,
     );
 

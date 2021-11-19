@@ -1,6 +1,6 @@
 const {spawn} = require('child_process');
 const core = require('@actions/core');
-
+const axios = require('axios');
 
 /**
  * Builds the new readme by replacing the readme's <!-- BLOG-POST-LIST:START --><!-- BLOG-POST-LIST:END --> tags
@@ -47,6 +47,37 @@ const core = require('@actions/core');
   };
 
 
+/**
+ * @param {import('axios').AxiosRequestConfig['data']} data
+ * @param {import('axios').AxiosRequestConfig['headers']} headers
+ */
+  function request(data, headers) {
+    return axios({
+      url: "https://api.github.com/graphql",
+      method: "post",
+      headers,
+      data,
+    });
+  }
+
+  class CustomError extends Error {
+    /**
+     * @param {string} message
+     * @param {string} type
+     */
+    constructor(message, type) {
+      super(message);
+      this.type = type;
+      this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
+    }
+  
+    static MAX_RETRY = "MAX_RETRY";
+    static USER_NOT_FOUND = "USER_NOT_FOUND";
+  }
+
+
   module.exports = {
-      buildReadme
+      buildReadme,
+      request,
+      CustomError
   }

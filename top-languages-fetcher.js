@@ -7,8 +7,7 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
-        user(login: $login) {
+      query user(login: ${core.getInput('user')} ){
           # fetch only owner repos & not forks
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
@@ -24,7 +23,7 @@ const fetcher = (variables, token) => {
               }
             }
           }
-        }
+        
       }
       `,
       variables,
@@ -38,7 +37,7 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username) {
   if (!username) throw Error("Invalid username");
 
-  const res = await retryer(fetcher, { login: username }).then(resp => {
+  const res = await retryer(fetcher).then(resp => {
     console.log("resp from res in fetch lang ", resp)
     return resp
   });

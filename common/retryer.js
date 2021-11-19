@@ -12,7 +12,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
       core.getInput('gh_token'),
       retries,
     ).then( res =>{ 
-      console.log(res)
+      console.log("resp from response in retryer ", res)
       return res 
     })
 

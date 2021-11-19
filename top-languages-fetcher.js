@@ -1,4 +1,4 @@
-const { request, logger } = require("./common/utils");
+const { request } = require("./common/utils");
 const retryer = require("./common/retryer");
 
 // require("dotenv").config();
@@ -38,10 +38,13 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username) {
   if (!username) throw Error("Invalid username");
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username }).then(resp => {
+    console.log("resp from res in fetch lang ", resp)
+    return res
+  });
 
   if (res.data.errors) {
-    logger.error(res.data.errors);
+    console.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");
   }
 

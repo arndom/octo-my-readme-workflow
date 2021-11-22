@@ -6,7 +6,7 @@ const fetcher = () => {
     {
       query: `
       {
-        user(login: "circa10a") {
+        user(login: "${core.getInput('user')}") {
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
               name

@@ -1,5 +1,6 @@
 const core = require('@actions/core')
-const { Octokit } = require('@octokit/core')
+const { Octokit } = require('@octokit/core');
+const { languagesSupported } = require('./common/utils');
 
 const fetchTopLanguages = require('./top-languages-fetcher')
 
@@ -9,14 +10,21 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
   try {    
 
-    const username = process.env.GITHUB_REPOSITORY.split("/")[0]
-    const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
-    const markdown = `${username}'s' most used language is text`
+    // const username = process.env.GITHUB_REPOSITORY.split("/")[0]
+    // const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
+    // const markdown = `${username}'s' most used language is text`
 
-    console.log("Hello", username,  ", the workflow is being deployed in the", repo, "repo")
+    // console.log("Hello", username,  ", the workflow is being deployed in the", repo, "repo")
 
-    const topLangs = await fetchTopLanguages();
-    console.log("Your top language is", Object.keys(topLangs)[0])
+    // const getLanguage = await fetchTopLanguages();
+    // console.log("Your top language is", Object.keys(getLanguage)[0])
+
+    // console.log(languagesSupported[getLanguage])
+
+    const lang = "javascript"
+
+    console.log(languagesSupported[lang])
+
 
     // const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
     //   owner: username,

@@ -61,7 +61,30 @@ const axios = require('axios');
     });
   }
 
+  const languagesSupported = {
+    "c": "c",
+    "cpp": "cpp",
+    "csharp": "csharp",
+    "css": "css",
+    "go-old": "go-old",
+    "go": "go",
+    "haskell": "haskell",
+    "html": "html",
+    "java": "java",
+    "javascript": "javascript",
+    "kotlin": "kotlin",
+    "lua": "lua",
+    "php": "php",
+    "python": "python",
+    "r": "r",
+    "ruby": "ruby",
+    "swift": "swift",
+    "typescript": "typescript"
+  }
+  
+
   module.exports = {
       buildReadme,
-      request
+      request,
+      languagesSupported
   }

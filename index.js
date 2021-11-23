@@ -1,8 +1,10 @@
 const core = require('@actions/core')
 const { Octokit } = require('@octokit/core');
 const { languagesSupported } = require('./common/utils');
-
 const fetchTopLanguages = require('./top-languages-fetcher')
+const { readFile, writeFile } = require('fs')
+const { promisify } = require('util')
+const asyncReadFile = promisify(readFile)
 
 const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
@@ -20,15 +22,52 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     // console.log("Your top language is", Object.keys(getLanguage)[0])
 
 
-    const lang = "javascript"
+    const lang = "java"
 
-    if(Object.keys(languagesSupported).includes(lang)){
-      console.log(lang)
-    }else{
-      console.log(lang)
+    const returnSvg = async (path) => {
+      const data = await asyncReadFile(path)    
+
+      // since fs.readFile returns a buffer, we should probably convert it to a string.
+      return data.toString() 
     }
 
+    if(Object.keys(languagesSupported).includes(lang)){
+      console.log("language supported:", lang)
+      
+      var languageIconPath = `./lib/programming-languages-logos/src/${languagesSupported[lang]}/${lang}.svg`
+      
+      var languageIcon = await returnSvg(languageIconPath)
+        .then((res)=>{
+          return res
+        })
+        .catch((err)=>{
+          console.error(`failed to read svg file: ${err}`)
+        })
 
+      var baseOctocatPath = `./lib/octocat-base/base.svg`
+      
+      var octocat = await returnSvg(baseOctocatPath)
+        .then((res)=>{
+          return res
+        })
+        .catch((err)=>{
+          console.error(`failed to read svg file: ${err}`)
+        })  
+
+
+      writeFile('./base-octocat.svg', octocat, function (err) {
+        if (err) throw err;               console.log('Results Received');
+      });
+
+      writeFile('./language-icon.svg', languageIcon, function (err) {
+        if (err) throw err;               console.log('Results Received');
+      });
+
+
+      
+    }else{
+      console.log("language unsupported:",lang)
+    }
 
     // const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
     //   owner: username,

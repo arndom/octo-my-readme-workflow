@@ -19,11 +19,15 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     // const getLanguage = await fetchTopLanguages();
     // console.log("Your top language is", Object.keys(getLanguage)[0])
 
-    // console.log(languagesSupported[getLanguage])
 
     const lang = "javascript"
 
-    console.log(languagesSupported[lang])
+    if(Object.keys(languagesSupported).includes(lang)){
+      console.log(lang)
+    }else{
+      console.log(lang)
+    }
+
 
 
     // const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {

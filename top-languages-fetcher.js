@@ -37,10 +37,10 @@ async function fetchTopLanguages() {
     return res
   })
 
-  // if (res.data.errors) {
-  //   console.error(res.data.errors);
-  //   throw Error(res.data.errors[0].message || "Could not fetch user");
-  // }
+  if (res.data.errors) {
+    console.error(res.data.errors);
+    // throw Error(res.data.errors[0].message || "Could not fetch user");
+  }
 
   let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};

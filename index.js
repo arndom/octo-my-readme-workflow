@@ -43,7 +43,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       console.error("language unsupported:",lang)
     }
 
-    const getReadme = await octokit.request('GET /repos/{owner}/{repo`}/contents/{path}', {
+    const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: username,
       repo: repo,
       path: core.getInput('readme_path'),

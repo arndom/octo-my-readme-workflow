@@ -18,15 +18,14 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     console.log("Your top language is", Object.keys(getLanguage)[0])
 
     const lang = Object.keys(getLanguage)[0].toLowerCase()
-    // const lang = "javascript"
 
     if(Object.keys(languagesSupported).includes(lang)){
       
       console.log(lang, "is a supported language ✅")
       
       var octoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
-        owner: username,
-        repo: repo,
+        owner: 'arndom',
+        repo: 'octo-my-readme-workflow',
         path: `lib/octo-lang/${lang}.png`,
       }).then((res)=>{
         return res.data.content
@@ -45,8 +44,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         return res.data
       }     
       ).catch(e => {
-        console.error("ocoto-lang not in repo 🔔", e)
-        // core.setFailed("Failed: ", e.message)
+        console.log("ocoto-lang not in repo 🔔")
       })
 
       const sha = getOctoLang !== undefined ? getOctoLang.sha : ''
@@ -79,8 +77,6 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
           core.setFailed("Failed: ", e.message)
         })
       }
-
-
 
     }else{
       console.error(lang, "is currently an unsupported language ❌")

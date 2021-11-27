@@ -19,25 +19,36 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     const getLanguage = await fetchTopLanguages();
     console.log("Your top language is", Object.keys(getLanguage)[0])
 
-    const lang = Object.keys(getLanguage)[0]
+    const lang = Object.keys(getLanguage)[0].toLowerCase()
     // const lang = "javascript"
 
-    if(Object.keys(languagesSupported).includes(lang.toLowerCase())){
+    if(Object.keys(languagesSupported).includes(lang)){
       
       console.log("language supported:", lang)
       
       // path to collection octo-langs
-      var languageIconPath = `./lib/octo-lang/${lang}.png`
+      var languageIconPath = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: username,
+        repo: repo,
+        path: './lib/octo-lang/${lang}.png',
+      }).then((res)=>{
+        console.log(res.data)
+      }).catch(e => {
+        console.error("Failed: ", e)
+        core.setFailed("Failed: ", e.message)
+      })
+
+      // var languageIconPath = `./lib/octo-lang/${lang}.png`
       
       // convert image to base64 encoded string
-      var base64str = base64_encode(languageIconPath);
+      // var base64str = base64_encode(languageIconPath);
 
-      // write file to root dir
-      fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
-        console.log(err);
-      });
+      // // write file to root dir
+      // fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
+      //   console.log(err);
+      // });
 
-      markdown =  `![octo-lang](my-octo-lang.png "ocotolang")`
+      // markdown =  `![octo-lang](my-octo-lang.png "ocotolang")`
 
     }else{
       console.error("language unsupported:",lang)

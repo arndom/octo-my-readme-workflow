@@ -32,7 +32,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         repo: repo,
         path: `lib/octo-lang/${lang}.png`,
       }).then((res)=>{
-        console.log(res.data)
+        console.log(res.data.content)
       }).catch(e => {
         console.error("Failed: ", e)
         core.setFailed("Failed: ", e.message)

@@ -32,7 +32,8 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         repo: repo,
         path: `lib/octo-lang/${lang}.png`,
       }).then((res)=>{
-        console.log(res.data.content)
+        // console.log(res.data.content)
+        return
       }).catch(e => {
         console.error("Failed: ", e)
         core.setFailed("Failed: ", e.message)
@@ -42,13 +43,14 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       
       // convert image to base64 encoded string
       // var base64str = base64_encode(languageIconPath);
+      var base64str = languageIconPath;
 
-      // // write file to root dir
-      // fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
-      //   console.log(err);
-      // });
+      // write file to root dir
+      fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
+        console.log(err);
+      });
 
-      // markdown =  `![octo-lang](my-octo-lang.png "ocotolang")`
+      markdown =  `![octo-lang](my-octo-lang.png "ocotolang")`
 
     }else{
       console.error("language unsupported:",lang)

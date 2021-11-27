@@ -30,7 +30,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       var languageIconPath = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: username,
         repo: repo,
-        path: 'lib/octo-lang/${lang}.png',
+        path: `lib/octo-lang/${lang}.png`,
       }).then((res)=>{
         console.log(res.data)
       }).catch(e => {

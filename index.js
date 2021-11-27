@@ -49,7 +49,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       // fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
       //   console.log(err);
       // });
-      await octokit.repos.createOrUpdateFileContents({
+      await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
         owner: username,
         repo: repo,
         path: "my-octo-lang.png",
@@ -61,7 +61,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         console.error("Failed: ", e)
         core.setFailed("Failed: ", e.message)
       })
-      
+
     }else{
       console.error("language unsupported:",lang)
     }

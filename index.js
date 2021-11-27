@@ -45,8 +45,8 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         return res.data
       }     
       ).catch(e => {
-        console.error("Failed: ", e)
-        core.setFailed("Failed: ", e.message)
+        console.error("ocoto-lang not in repo 🔔", e)
+        // core.setFailed("Failed: ", e.message)
       })
 
       const sha = getOctoLang !== undefined ? getOctoLang.sha : ''

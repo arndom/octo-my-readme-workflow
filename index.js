@@ -12,8 +12,6 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     const username = process.env.GITHUB_REPOSITORY.split("/")[0]
     const repo = process.env.GITHUB_REPOSITORY.split("/")[1]
 
-    var markdown = ``
-
     console.log("Hello", username,  ", the workflow is being deployed in the", repo, "repo")
 
     const getLanguage = await fetchTopLanguages();
@@ -26,42 +24,68 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       
       console.log(lang, "is a supported language ✅")
       
-      // path to collection of octo-langs
-      var languageIconPath = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      var octoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: username,
         repo: repo,
         path: `lib/octo-lang/${lang}.png`,
       }).then((res)=>{
-        // console.log(res.data.content)
         return res.data.content
       }).catch(e => {
         console.error("Failed: ", e)
         core.setFailed("Failed: ", e.message)
       })
 
-      // var languageIconPath = `./lib/octo-lang/${lang}.png`
-      
-      // convert image to base64 encoded string
-      // var base64str = base64_encode(languageIconPath);
-      var base64str = languageIconPath;
+      var base64str = octoLang;
 
-      // write file to root dir
-      // fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
-      //   console.log(err);
-      // });
+      var isOctoLang =  fs.existsSync('my-octo-lang.png') 
 
-      await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
-        owner: username,
-        repo: repo,
-        path: "my-octo-lang.png",
-        message: "created/updated octo-lang",
-        content: base64str,
-      }).then(()=>{
-          markdown = `![octo-lang](my-octo-lang.png "ocotolang")`
-      }).catch((e) => {
-        console.error("Failed: ", e)
-        core.setFailed("Failed: ", e.message)
-      })
+      if(!isOctoLang){
+
+        await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
+          owner: username,
+          repo: repo,
+          path: "my-octo-lang.png",
+          message: "created/updated octo-lang",
+          content: base64str,
+        }).then(()=>{
+            console.log("octo-lang generated ✅")
+        }).catch((e) => {
+          console.error("Failed: ", e)
+          core.setFailed("Failed: ", e.message)
+        })
+
+      }else{
+
+        const getOctoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+          owner: username,
+          repo: repo,
+          path: 'my-octo-lang.png',
+        }).then( res => { 
+          return res.data
+        }     
+        ).catch(e => {
+          console.error("Failed: ", e)
+          core.setFailed("Failed: ", e.message)
+        })
+
+        const sha = getOctoLang.sha
+
+        await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
+          owner: username,
+          repo: repo,
+          path: "my-octo-lang.png",
+          message: "created/updated octo-lang",
+          content: base64str,
+          sha: sha,
+        }).then(()=>{
+            console.log("octo-lang generated ✅")
+        }).catch((e) => {
+          console.error("Failed: ", e)
+          core.setFailed("Failed: ", e.message)
+        })
+
+      }
+
 
     }else{
       console.error(lang, "is currently an unsupported language ❌")

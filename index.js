@@ -51,19 +51,35 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
       const sha = getOctoLang !== undefined ? getOctoLang.sha : ''
 
-      await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
-        owner: username,
-        repo: repo,
-        path: "my-octo-lang.png",
-        message: "created/updated octo-lang",
-        content: base64str,
-        sha: sha,
-      }).then(()=>{
-          console.log("octo-lang generated ✅")
-      }).catch((e) => {
-        console.error("Failed: ", e)
-        core.setFailed("Failed: ", e.message)
-      })
+      if(sha === ''){
+        await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
+          owner: username,
+          repo: repo,
+          path: "my-octo-lang.png",
+          message: "created/updated octo-lang",
+          content: base64str,
+        }).then(()=>{
+            console.log("octo-lang generated ✅")
+        }).catch((e) => {
+          console.error("Failed: ", e)
+          core.setFailed("Failed: ", e.message)
+        })
+      }else{
+        await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
+          owner: username,
+          repo: repo,
+          path: "my-octo-lang.png",
+          message: "created/updated octo-lang",
+          content: base64str,
+          sha: sha,
+        }).then(()=>{
+            console.log("octo-lang generated ✅")
+        }).catch((e) => {
+          console.error("Failed: ", e)
+          core.setFailed("Failed: ", e.message)
+        })
+      }
+
 
 
     }else{

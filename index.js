@@ -36,7 +36,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       })
 
       var base64str = octoLang;
-      
+
       const getOctoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: username,
         repo: repo,
@@ -49,7 +49,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         core.setFailed("Failed: ", e.message)
       })
 
-      const sha = getOctoLang.sha
+      const sha = getOctoLang !== undefined ? getOctoLang.sha : ''
 
       await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
         owner: username,

@@ -36,55 +36,34 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       })
 
       var base64str = octoLang;
+      
+      const getOctoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: username,
+        repo: repo,
+        path: 'my-octo-lang.png',
+      }).then( res => { 
+        return res.data
+      }     
+      ).catch(e => {
+        console.error("Failed: ", e)
+        core.setFailed("Failed: ", e.message)
+      })
 
-      var isOctoLang =  fs.existsSync('my-octo-lang.png') 
+      const sha = getOctoLang.sha
 
-      if(!isOctoLang){
-
-        await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
-          owner: username,
-          repo: repo,
-          path: "my-octo-lang.png",
-          message: "created/updated octo-lang",
-          content: base64str,
-        }).then(()=>{
-            console.log("octo-lang generated ✅")
-        }).catch((e) => {
-          console.error("Failed: ", e)
-          core.setFailed("Failed: ", e.message)
-        })
-
-      }else{
-
-        const getOctoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: username,
-          repo: repo,
-          path: 'my-octo-lang.png',
-        }).then( res => { 
-          return res.data
-        }     
-        ).catch(e => {
-          console.error("Failed: ", e)
-          core.setFailed("Failed: ", e.message)
-        })
-
-        const sha = getOctoLang.sha
-
-        await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
-          owner: username,
-          repo: repo,
-          path: "my-octo-lang.png",
-          message: "created/updated octo-lang",
-          content: base64str,
-          sha: sha,
-        }).then(()=>{
-            console.log("octo-lang generated ✅")
-        }).catch((e) => {
-          console.error("Failed: ", e)
-          core.setFailed("Failed: ", e.message)
-        })
-
-      }
+      await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
+        owner: username,
+        repo: repo,
+        path: "my-octo-lang.png",
+        message: "created/updated octo-lang",
+        content: base64str,
+        sha: sha,
+      }).then(()=>{
+          console.log("octo-lang generated ✅")
+      }).catch((e) => {
+        console.error("Failed: ", e)
+        core.setFailed("Failed: ", e.message)
+      })
 
 
     }else{

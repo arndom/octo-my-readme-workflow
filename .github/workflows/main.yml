@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
 
 jobs:
-  get_user_data:
+  get_lang_gen_octo:
     runs-on: ubuntu-latest
     name: Get Language & Generate Ocoto-lang
     steps:

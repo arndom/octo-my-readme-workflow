@@ -1,3 +1,8 @@
+## Preview
+
+![preview](https://media.giphy.com/media/JrpfevOVogixZYWp9O/source.gif "preview")
+
+
 ## How to use
 
 1. Star this repo 😉
@@ -14,7 +19,7 @@ on:
   workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
 
 jobs:
-  get_user_data:
+  get_lang_gen_octo:
     runs-on: ubuntu-latest
     name: Get Language & Generate Ocoto-lang
     steps:
@@ -25,7 +30,7 @@ jobs:
       uses: arndom/octo-my-readme-workflow@v0.27
 ```
 
-5. Commit and trigger it manually and after the run, a  `my-ocoto-lang.png` file will be created in your repository.
+5. Commit and trigger it manually, after the run, a  `my-ocoto-lang.png` file will be created in your repository.
 6. You can display it in your `README.md` like this:
 
 ```markdown
@@ -33,18 +38,42 @@ jobs:
 <img src= "./my-octo-lang.png" width="400px"/>
 ```
 
-The result:
+**The result**
 
 <p> Here is arndom's ocoto-lang:</p>
 <img src= "./my-octo-lang.png" width="400px"/>
 
 
+## Supported Languages
+
+Currently this supports the following languages:
+
+- C
+- C++
+- C#
+- CSS
+- GO
+- Haskell
+- HTML
+- Java
+- JavaScript
+- Kotlin
+- Lua
+- php
+- Python
+- R
+- Ruby
+- Swift
+- Typescript    
+  More coming soon...
+
 ## Special thanks to
 
+- All users of the workflow
 - Dev.to for the github actions hackathon that inspired me to build this
 - [@gautamkrishnar](https://github.com/gautamkrishnar) & [@theboi](https://github.com/theboi) for writing awesome action code that helped me find my way around.
-- [@Rahnard](https://github.com/Rahnard) for the styling of the octokat
-- All users of the workflow
+- [@Rahnard](https://github.com/Rahnard) for the styling of the octocat
+- [@abranhe](https://www.npmjs.com/package/programming-languages-logos) for the programming logos package
 
 
 Hope you like this, Don't forget to give this a star ⭐

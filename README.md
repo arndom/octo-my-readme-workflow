@@ -1,6 +1,6 @@
 ## Preview
 
-![preview](https://media.giphy.com/media/JrpfevOVogixZYWp9O/source.gif "preview")
+<img src="https://media.giphy.com/media/JrpfevOVogixZYWp9O/source.gif" width="400px" alt="preview"/>
 
 
 ## How to use
@@ -38,7 +38,7 @@ jobs:
 <img src= "./my-octo-lang.png" width="400px"/>
 ```
 
-**The result**
+### The result
 
 <p> Here is arndom's ocoto-lang:</p>
 <img src= "./my-octo-lang.png" width="400px"/>
@@ -75,5 +75,5 @@ Currently this supports the following languages:
 - [@Rahnard](https://github.com/Rahnard) for the styling of the octocat
 - [@abranhe](https://www.npmjs.com/package/programming-languages-logos) for the programming logos package
 
-
+## Liked it?
 Hope you like this, Don't forget to give this a star ⭐

@@ -22,7 +22,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
     const lang = Object.keys(getLanguage)[0]
     // const lang = "javascript"
 
-    if(Object.keys(languagesSupported).map( _lang => _lang.toLowerCase() ).includes(lang)){
+    if(Object.keys(languagesSupported).includes(lang.toLowerCase())){
       
       console.log("language supported:", lang)
       

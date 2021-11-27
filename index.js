@@ -24,9 +24,9 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
 
     if(Object.keys(languagesSupported).includes(lang)){
       
-      console.log("language supported:", lang)
+      console.log(lang, "is a supported language ✅")
       
-      // path to collection octo-langs
+      // path to collection of octo-langs
       var languageIconPath = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: username,
         repo: repo,
@@ -49,6 +49,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       // fs.writeFile("my-octo-lang.png", base64str, 'base64', function(err) {
       //   console.log(err);
       // });
+
       await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}',{
         owner: username,
         repo: repo,
@@ -63,39 +64,9 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       })
 
     }else{
-      console.error("language unsupported:",lang)
+      console.error(lang, "is currently an unsupported language ❌")
     }
 
-    const getReadme = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: username,
-      repo: repo,
-      path: core.getInput('readme_path'),
-    }).then( res => { 
-      // console.log(res.data)
-      return res.data
-    }     
-    ).catch(e => {
-      console.error("Failed: ", e)
-      core.setFailed("Failed: ", e.message)
-    })
-    // console.log(getReadme)
-
-    const sha = getReadme.sha
-    // console.log(sha)
-
-    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-      owner: username,
-      repo: repo,
-      path: core.getInput('readme_path'),
-      message: '(Automated) Update README.md',
-      content: Buffer.from(markdown, "utf8").toString('base64'),
-      sha: sha,
-    }).then(() => {
-      core.setOutput("result", (markdown))
-    }).catch((e) => {
-      console.error("Failed: ", e)
-      core.setFailed("Failed: ", e.message)
-    })
 
   } catch (error) {
     core.setFailed(error.message);

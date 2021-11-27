@@ -1,23 +1,12 @@
 name: 'Octo my README'
 author: 'arndom'
-description: 'add custom octocat based on most used language to readme'
+description: 'add octocat based on most used language to in readme'
 
 inputs:
-  user: 
-    description: 'username'
-    required: true
-    default: ${{ github.actor }}
   gh_token:
     description: 'user token'
     required: true
     default: ${{ github.token }}
-  readme_path:
-    description: 'Comma separated paths of the readme files you want to update'
-    default: 'README.md'
-    required: false
-  tag_post_pre_newline:
-    description: "Inserts newline before the closing tag and after the opening tag when using the template option, for formatting"
-    required: false
 outputs:
   result:
     description: 'the result of all this'
@@ -25,7 +14,3 @@ outputs:
 runs:
   using: 'node12'
   main: 'index.js'
-
-branding:
-  icon: 'activity'
-  color: 'blue'

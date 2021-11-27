@@ -8,10 +8,8 @@ on:
 jobs:
   get_user_data:
     runs-on: ubuntu-latest
-    name: Get Language Stat
+    name: Get Language & Generate Ocoto-lang
     steps:
-    - name: Get most used language from all repos
-      id: hello
+    - name: Get most used language then generate ocoto lang
+      id: octo-lang
       uses: arndom/octo-my-readme-workflow@v0.27
-      with:
-        user: '${{github.actor}}'

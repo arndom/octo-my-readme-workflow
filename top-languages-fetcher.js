@@ -6,7 +6,7 @@ const fetcher = () => {
     {
       query: `
       {
-        user(login: "${core.getInput('user')}") {
+        user(login: "${process.env.GITHUB_REPOSITORY.split("/")[0]}") {
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
               name

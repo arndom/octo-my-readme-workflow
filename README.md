@@ -27,7 +27,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Get most used language then generate ocoto lang
       id: octo-lang
-      uses: arndom/octo-my-readme-workflow@v0.27
+      uses: arndom/octo-my-readme-workflow@v1
 ```
 
 5. Commit and trigger it manually, after the run, a  `my-ocoto-lang.png` file will be created in your repository.

@@ -1,6 +1,6 @@
 name: 'Octo my README'
 author: 'arndom'
-description: 'add octocat based on most used language to in readme'
+description: 'Add OctoCat based on most used language to README'
 
 inputs:
   gh_token:

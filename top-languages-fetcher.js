@@ -39,18 +39,9 @@ async function fetchTopLanguages() {
 
   if (res.data.errors) {
     console.error(res.data.errors);
-    // throw Error(res.data.errors[0].message || "Could not fetch user");
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
-  let repoToHide = {};
-
-  // filter out repositories to be hidden
-  repoNodes = repoNodes
-    .sort((a, b) => b.size - a.size)
-    .filter((name) => {
-      return !repoToHide[name.name];
-    });
 
   repoNodes = repoNodes
     .filter((node) => {

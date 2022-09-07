@@ -23,7 +23,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
       
       console.log(lang, "is a supported language ✅")
       
-      var octoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      let octoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: 'arndom',
         repo: 'octo-my-readme-workflow',
         path: `lib/octo-lang/${lang}.png`,
@@ -34,7 +34,7 @@ const octokit = new Octokit({ auth: core.getInput('gh_token') });
         core.setFailed("Failed: ", e.message)
       })
 
-      var base64str = octoLang;
+      let base64str = octoLang;
 
       const getOctoLang = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: username,
